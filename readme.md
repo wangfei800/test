@@ -10,17 +10,17 @@ Installation:
 
 3. Set local database, save DB config in .env, for example
 
-DB_CONNECTION=pgsql
+    DB_CONNECTION=pgsql
 
-DB_HOST=localhost
+    DB_HOST=localhost
 
-DB_PORT=5432
+    DB_PORT=5432
 
-DB_DATABASE=test
+    DB_DATABASE=test
 
-DB_USERNAME=postgres
+    DB_USERNAME=postgres
 
-DB_PASSWORD=12345
+    DB_PASSWORD=12345
 
 4. Run php artisan migrate
 
