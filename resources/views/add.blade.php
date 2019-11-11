@@ -5,8 +5,8 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header"><a href="/home">Users List</a><span style="float:right;">
-                        <a href="/add">Add New User</a></span></div>
+                <div class="card-header"><a href="/home">User List</a> > User Edit<span style="float:right;">
+                        <a href="/add"></a></span></div>
 
                 <div class="card-body" >
                     <form style="padding: 10px;" method="post" action="/{{$action}}">
@@ -41,7 +41,7 @@
 
                         <div class="form-group">
                             <label for="title">Status</label>
-                            <input type="checkbox" class="form-control" name="status" class="switch-input" value="1" {{ ($user['status']??false) ? 'checked="checked"' : '' }}/>
+                            <input type="checkbox" class="form-control" name="active" class="switch-input" value="1" @if (isset($user['active']) && $user['active']) checked="checked" @endif />
                         </div>
 
                         <div class="form-group">
@@ -50,10 +50,28 @@
                         </div>
 
                         <button type="submit" class="btn btn-primary">Save</button>
-
+                        <button type="cancel" onClick="window.history.back();" class="btn btn-primary">Cancel</button>
                     </form>
                 </div>
+
             </div>
+
+            @if(isset($user['id']))
+                <div class="card-header"><a href="/home">Addresses</a><span style="float:right;">
+                                <a href="/addAddress/{{$user['id']}}"><span>Add New Address</span>/a></span></div>
+                <div  >
+                    @foreach ($user->addresses()->get() as $address)
+                        <a href="/editAddress/{{$user['id']}}/{{ $address['id']}}" title="Edit">
+                            <div class="bg-info" style="margin:20px;padding:10px;"> Type: {{ $address['type']??'' }} <br/>
+                                Street Address: {{ $address['street_address']??'' }} <br/>
+                                City: {{ $address['city']??'' }} <br/>
+                                Province: {{ $address['province']??'' }} <br/>
+                                Country: {{ $address['country']??'' }}
+                            </div>
+                        </a>
+                    @endforeach
+                </div>
+            @endif
         </div>
     </div>
 </div>

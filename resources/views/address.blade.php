@@ -5,8 +5,8 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header"><a href="/home">Users List</a><span style="float:right;">
-                        <a href="/add">Add New User</a></span></div>
+                <div class="card-header"><a href="/home">Address List</a><span style="float:right;">
+                        <a href="/add">Add New Address</a></span></div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -17,29 +17,27 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <td>Fist Name</td>
-                                <td>Last Name</td>
-                                <td>Email</td>
-                                <td>Status</td>
-                                <td>&nbsp;</td>
+                                <td>Type</td>
+                                <td>Street Address</td>
+                                <td>City</td>
+                                <td>Province</td>
+                                <td>Country&nbsp;</td>
                             </tr>
                             </thead>
-                        @foreach ($users as $user)
+                        @foreach ($addresses as $address)
                             <tbody>
 
                             <tr>
-                                <td>{{ $user->first_name }}</td>
-                                <td>{{ $user->last_name }}</td>
-                                <td>{{ $user->email }}</td>
-                                <td>{{ $user->active? 'Active' : 'Inactive' }}</td>
-                                <td><a href="/view/{{ $user->id }}">View</a>
-                                    <a href="/edit/{{ $user->id }}">Edit</a></td>
+                                <td>{{ $address->type }}</td>
+                                <td>{{ $address->street_address }}</td>
+                                <td>{{ $address->city }}</td>
+                                <td>{{ $address->province }}</td>
+                                <td><a href="/edit?id={{ $address->id }}">Edit</a></td>
                             </tr>
                             </tbody>
                         @endforeach
                         </table>
                 </div>
-
             </div>
         </div>
     </div>

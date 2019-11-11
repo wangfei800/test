@@ -19,6 +19,6 @@ DB_PASSWORD=12345
 
 4. Run php artisan migrate
 
-5. Run php artisan db:seed, which created a user with username: Admin and password: 12345
+5. Run php artisan db:seed, which created a user with username: admin@test.com and password: 12345
 
 The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).

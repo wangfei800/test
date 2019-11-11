@@ -16,12 +16,20 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password',
+        'first_name', 'last_name', 'email', 'password', 'active',
     ];
 
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = bcrypt($password);
+    }
+
+    /**
+     * Get the addresses for the user.
+     */
+    public function addresses()
+    {
+        return $this->hasMany('App\Address');
     }
 
     /**

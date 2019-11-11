@@ -26,9 +26,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = DB::table('users')->get();
+        $users = DB::table('users')->orderBy('id')->get();
 
         return view('home')->with('users' , $users);
+
+    }
+
+    public function view($userId)
+    {
+        $user = User::where('id', $userId)->get()->first();
+
+        return view('view')->with('user' , $user);
 
     }
 
@@ -42,11 +50,13 @@ class HomeController extends Controller
     }
 
     // This will show the edit form
-    public function edit(Request $request)
+    public function edit(Request $request, $id)
     {
-        $user = User::where('id', $request->id)->get()->first();
+        if (!empty($id)) {
+            $user = User::where('id', $id)->get()->first();
+        }
 
-        return view('add')->with('user' , $user)->with('action', 'update');
+        return view('add')->with('user', $user)->with('action', 'update');
 
     }
 
@@ -80,6 +90,9 @@ class HomeController extends Controller
             unset($requestData['password']);
         }
 
+        if (!isset($requestData['active'])) {
+            $requestData['active'] = false;
+        }
         $user->update($requestData);
 
         return redirect('/home');
