@@ -6,6 +6,8 @@ Installation:
 
 1. Clone this repo
 
+2. Enter test directory, and run: cp .env.example .env
+
 2. Run composer update
 
 3. Set local database, save DB config in .env, for example
@@ -26,7 +28,7 @@ Installation:
 
 5. Run php artisan db:seed, which created a user with username: admin@test.com and password: 12345
 
-6. Run php artisan serve, default which start a http server with port: 8000
+6. Run php artisan serve, which will start a http server with port: 8000
 
 7. Open browser, access localhost:8000
 
